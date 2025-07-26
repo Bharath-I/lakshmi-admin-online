@@ -1,5 +1,18 @@
 localStorage.setItem("adminLoggedIn", true);
 window.location.href = "admin-dashboard.html";
+// Save product to Firestore
+function saveProduct(productId, name, price, imageUrl, inStock, description) {
+    db.collection("products").doc(productId).set({
+        name: name,
+        price: price,
+        image: imageUrl,
+        inStock: inStock,
+        approved: true,
+        description: description
+    }).then(() => {
+        alert("Product added and now live on customer site!");
+    });
+}
 
 function approveOrder(btn) {
     const row = btn.closest("tr");
